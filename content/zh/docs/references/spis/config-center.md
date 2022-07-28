@@ -5,6 +5,9 @@ linkTitle: "配置中心扩展"
 weight: 13
 ---
 
+{{% pageinfo %}} 此文档已经不再维护。您当前查看的是快照版本。如果想要查看最新版本的文档，请参阅[最新版本](/zh/docs3-v2/java-sdk/reference-manual/spi/description/config-center/)。
+{{% /pageinfo %}}
+
 ## 设计目的
 
 配置中心的核心功能是作为 Key-Value 存储，Dubbo 框架告知配置中心其关心的 key，配置中心返回该key对应的 value 值。
@@ -86,7 +89,7 @@ Etcd 和 Consul 本质上也是一种类似 zookeeper 的树状存储结构，�
 
 ### Nacos
 
-Nacos 作为一个专业的第三方配置中心，拥有专门为配置中心设计的存储结构，包括内置的 namespace、group、dataid 等概念。并且这几个概念基本上与 Dubbo 框架抽象的配置中心是一一对应的。
+[Nacos](https://nacos.io/) 作为一个专业的第三方配置中心，拥有专门为配置中心设计的存储结构，包括内置的 namespace、group、dataid 等概念。并且这几个概念基本上与 Dubbo 框架抽象的配置中心是一一对应的。
 
 与 Zookeeper 实现的对应关系如下：
 

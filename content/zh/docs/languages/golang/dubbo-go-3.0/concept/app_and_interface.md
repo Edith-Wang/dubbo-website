@@ -6,6 +6,9 @@ linkTitle: 服务层级
 description: Dubbo-go 的应用和接口
 ---
 
+{{% pageinfo %}} 此文档已经不再维护。您当前查看的是快照版本。如果想要查看最新版本的文档，请参阅[最新版本](/zh/docs3-v2/golang-sdk/concept/more/app_and_interface/)。
+{{% /pageinfo %}}
+
 # Dubbo-go 服务层级
 
 Dubbo-go 服务层级为两个级别：分别是应用级别(App Level)和接口级别(Interface Level)，该服务分层与**框架配置**结构息息相关。
@@ -34,7 +37,7 @@ Dubbo-go 服务层级为两个级别：分别是应用级别(App Level)和接口
 
 - 注册中心（Registry）模块
 
-  注册中心模块负责定义好所要使用的一系列注册中心，例如框架支持的ZK、Nacos、ETCD等中间件。应用级别的注册模块只负责声明，由接口级别的组件进行引用，引用时以用户自定义的注册中心ID（registryID) 作为索引。
+  注册中心模块负责定义好所要使用的一系列注册中心，例如框架支持的ZK、[Nacos](https://nacos.io/)、ETCD等中间件。应用级别的注册模块只负责声明，由接口级别的组件进行引用，引用时以用户自定义的注册中心ID（registryID) 作为索引。
 
 - 协议（Protocol）模块
 
