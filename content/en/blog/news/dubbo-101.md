@@ -86,7 +86,7 @@ The basic concepts of current framework of distributed service is similar to the
 5.	Running container – Initialize and load the provider and manage the lifecycle of running.
 
 
-![dubbo-architecture](../../img/blog/dubbo-architecture.png)
+![dubbo-architecture](/imgs/blog/dubbo-architecture.png)
 
 
 
@@ -191,7 +191,7 @@ public class Application {
 
 ### Run
 
-The complete example can be found at https://github.com/apache/dubbo-samples/tree/master/dubbo-samples-api. In the complete version, it is convenient to execute by maven in command line with the configuration of *exec-maven-plugin*. Of course, it can also be executed directly in IDE. However, there is one noteworthy thing that because of using assembled way to look up service, it needs to assign *-Djava.net.preferIPv4Stack=true* when running.
+The complete example can be found at https://github.com/apache/dubbo-samples/tree/master/1-basic/dubbo-samples-api. In the complete version, it is convenient to execute by maven in command line with the configuration of *exec-maven-plugin*. Of course, it can also be executed directly in IDE. However, there is one noteworthy thing that because of using assembled way to look up service, it needs to assign *-Djava.net.preferIPv4Stack=true* when running.
 
 #### Build Example
 
@@ -269,7 +269,7 @@ hi, dubbo
 
 Dubbo also provides a public platform that can create a Dubbo application quickly based on Spring Boot. Visit  http://start.dubbo.io and follow the figure below to create an example project:
 
-![dubbo initializr](../../img/blog/dubbo-initializr.png)
+![dubbo initializr](/imgs/blog/dubbo-initializr.png)
 
 **Notes**：
 
@@ -385,6 +385,6 @@ Eventually, we give an outline of how to create a Dubbo application quickly base
 ---
 
 1. [Getting Started Using JavaTM RMI](https://docs.oracle.com/javase/6/docs/technotes/guides/rmi/hello/hello-world.html)
-2. [Explicit target](http://dubbo.apache.org/docs/v2.7/user/examples/explicit-target/)
-3. [Multicast Registry](http://dubbo.apache.org/docs/v2.7/user/references/registry/multicast/)
-4. [Online QOS command](http://dubbo.apache.org/docs/v2.7/user/references/qos/)   
+2. [Explicit target](/en/docs/v2.7/user/examples/explicit-target/)
+3. [Multicast Registry](/en/docs/v2.7/user/references/registry/multicast/)
+4. [Online QOS command](/en/docs/v2.7/user/references/qos/)   

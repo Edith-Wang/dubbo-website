@@ -161,7 +161,7 @@ public interface LoadBalance {
 }
 ```
 LoadBalance interface has only one select method. Select method chose one invoker among multiple invokers. In the code above, the elements related to Dubbo SPI are:
-* @SPI([RandomLoadBalance.NAME](http://RandomLoadBalance.NAME)) @SPI is used for LoadBalance interface, which indicates that the LoadBalance interface is an extension point. Without the @SPI annotation, if we try to load the extension, it will throw an exception. @SPI annotation has one parameter, and this parameter represents the Alias of the default implementation of the extension point. If there has no explicitly specified extension, the default implementation will be used.
+* @SPI(RandomLoadBalance.NAME) @SPI is used for LoadBalance interface, which indicates that the LoadBalance interface is an extension point. Without the @SPI annotation, if we try to load the extension, it will throw an exception. @SPI annotation has one parameter, and this parameter represents the Alias of the default implementation of the extension point. If there has no explicitly specified extension, the default implementation will be used.
 `RandomLoadBalance.NAME` is a constant with value “random” and is a random load balancing implementation. The definition of random is in the configuration file `META-INF/dubbo/internal/com.alibaba.dubbo.rpc.cluster.LoadBalance`:
 
 ```bash
@@ -173,7 +173,7 @@ consistenthash=com.alibaba.dubbo.rpc.cluster.loadbalance.ConsistentHashLoadBalan
 There are four extension implementations of LoadBalance defined in the configuration file. The implementation of load balancing will not be covered in this article. The only thing we need to know is that Dubbo provides four kinds of load balancing implementations. We can explicitly specify an implementation by using xml file, properties file or JVM parameter. If there has no explicitly specified implementation, Dubbo will use random as default.
 
 
-![](/imgs/blog/dubbo_loadbalance.png)
+![img](/imgs/blog/dubbo_loadbalance.png)
 
 * @Adaptive("loadbalance")  Applying @Adaptive annotation on select method indicates that select method is an adaptive method. Dubbo will automatically generate the corresponding code for the method. When select method is called, it will decide which extension to apply based on the method parameters. @Adaptive parameter `loadbalance` indicates that the value of loadbalance in method is the extension implementation that will be actually called. However, we cannot find loadbalance parameter in select method, then how can we obtain the value of loadbalance? There is another URL-type parameter in select method, and Dubbo obtains the value of loadbalance from that URL. Here we need to use Dubbo’s URL bus pattern, in one word, URL contains all the parameters in RPC. There is a member variable `Map<String, String>parameters` in the URL class, which contains loadbalance as a parameter
 

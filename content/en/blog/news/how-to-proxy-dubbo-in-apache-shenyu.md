@@ -5,14 +5,14 @@ date: 2022-05-04
 description: This article describes how to access the `Dubbo` service through the `Apache ShenYu` gateway. The main content includes a simple example to core call flow analysis and a summary of the design principles.
 ---
 
-![](/imgs/blog/shenyu-dubbo/ApacheShenYu-Dubbo-en.png)
+![img](/imgs/blog/shenyu-dubbo/ApacheShenYu-Dubbo-en.png)
 
 
 ## 1. Introduction
 
 - Apache ShenYu
 
-![](/imgs/blog/shenyu-dubbo/shenyu.png)
+![img](/imgs/blog/shenyu-dubbo/shenyu.png)
 
 
 [Apache ShenYu(Incubating)](https://shenyu.apache.org/docs/index) is an asynchronous, high-performance, cross-language, responsive `API` gateway. Compatible with a variety of mainstream framework systems, support for hot-plugging, users can customize the development to meet the current and future needs of users in a variety of scenarios, experienced large-scale scenarios hammered.
@@ -25,13 +25,13 @@ In May 2021, `ShenYu` was donated to the `Apache` Software Foundation, and the A
 
 ## 2. Quick Start with Dubbo
 
-This section describes how to connect the `Dubbo` service to the `Shenyu` gateway. You can find the [sample code] for this section directly under the project (https://github.com/apache/incubator-shenyu/tree/master/shenyu-examples/shenyu -examples-dubbo/shenyu-examples-apache-dubbo-service).
+This section describes how to connect the `Dubbo` service to the `Shenyu` gateway. You can find the [sample code] for this section directly under the project (https://github.com/apache/shenyu/tree/master/shenyu-examples/shenyu-examples-dubbo -examples-dubbo/shenyu-examples-apache-dubbo-service).
 
 ### 2.1 Start shenyu-admin
 
-`shenyu-admin` is the `Apache ShenYu` backend management system, there are various ways to start it, this article is started by [local deployment](https://shenyu.apache.org/docs/deployment/deployment-local) way. After successful startup, you need to set the `dubbo` plugin to be on and set your registered address in the base configuration `->`Plugin Management', please make sure the registration center has been opened.
+`shenyu-admin` is the `Apache ShenYu` backend management system, there are various ways to start it, this article is started by `[local deployment](https://shenyu.apache.org/docs/deployment/deployment-local)` way. After successful startup, you need to set the `dubbo` plugin to be on and set your registered address in the base configuration `->`Plugin Management', please make sure the registration center has been opened.
 
-![](/imgs/blog/shenyu-dubbo/dubbo-enable-en.png)
+![img](/imgs/blog/shenyu-dubbo/dubbo-enable-en.png)
 
 ### 2.2 Start ShenYu Gateway
 
@@ -79,7 +79,7 @@ Make sure the gateway has introduced the relevant dependencies before starting. 
 
 ### 2.3 Start shenyu-examples-dubbo
 
-Take the example provided on the official website [shenyu-examples-dubbo](https://github.com/apache/incubator-shenyu/tree/master/shenyu-examples/shenyu-examples-dubbo/shenyu-examples-apache-dubbo-service). Suppose the `dubbo` service is defined as follows.
+Take the example provided on the official website [shenyu-examples-dubbo](https://github.com/apache/shenyu/tree/master/shenyu-examples/shenyu-examples-dubbo). Suppose the `dubbo` service is defined as follows.
 
 ```xml
 <beans /* ...... * />
@@ -146,7 +146,7 @@ shenyu:
 
 In the configuration file, declare the registry address used by `dubbo`. The `dubbo` service registers with `shenyu-admin`, using the method `http`, and the registration address is `http://localhost:9095`.
 
-See [Application Client Access](https://shenyu.apache.org/docs/design/register-center-design/) for more information on the use of the registration method.
+See `[Application Client Access](https://shenyu.apache.org/docs/design/register-center-design/)` for more information on the use of the registration method.
 
 
 ### 2.4 Invoke the Dubbo service
@@ -155,21 +155,21 @@ The `shenyu-examples-dubbo` project will automatically register the interface me
 
 Open `Plugins List -> Proxy -> dubbo` to see the list of plugin rules configuration.
 
-![](/imgs/blog/shenyu-dubbo/dubbo-service-list-en.png)
+![img](/imgs/blog/shenyu-dubbo/dubbo-service-list-en.png)
 
 Information on the selectors for successful registration.
 
-![](/imgs/blog/shenyu-dubbo/dubbo-selector-en.png)
+![img](/imgs/blog/shenyu-dubbo/dubbo-selector-en.png)
 
 Information on the rules for successful registration.
 
-![](/imgs/blog/shenyu-dubbo/dubbo-rule-en.png)
+![img](/imgs/blog/shenyu-dubbo/dubbo-rule-en.png)
 
 > Selectors and rules are the soul of the `Apache ShenYu` gateway. Mastering it well, you can manage any traffic. Corresponding to the matching conditions (conditions) inside the selectors and rules, we can handle various complex scenarios according to different traffic filtering rules. Traffic filtering can get data from `Header`, `URI`, `Query`, `Cookie` and so on Http requests.
 >
 > Then you can use `Match`, `=`, `Regex`, `Groovy`, `Exclude` and other matching methods to match the data you expect. Multi-group match additions can use the `And/Or` matching strategy.
 >
-> See: [Selector and Rule Management](https://shenyu.apache.org/docs/user-guide/admin-usage/selector-and-rule) for details and usage.
+> See: `[Selector and Rule Management](https://shenyu.apache.org/docs/user-guide/admin-usage/selector-and-rule)` for details and usage.
 
 
 Initiate a `GET` request to invoke the `dubbo` service through the `ShenYu` gateway.
@@ -206,11 +206,11 @@ Application client access refers to accessing microservices to the `Apache ShenY
 
 Accessing application clients to the `Apache ShenYu` gateway is achieved through the registry, which involves client-side registration and server-side synchronization of data. The registry supports `Http`, `Zookeeper`, `Etcd`, `Consul` and `Nacos`. The default is to register by `Http`.
 
-Please refer to [Client Access Configuration](https://shenyu.apache.org/docs/user-guide/register-center-access) for client access related configuration.
+Please refer to `[Client Access Configuration](https://shenyu.apache.org/docs/user-guide/register-center-access)` for client access related configuration.
 
 #### 3.1.1 Client-side Registration
 
-![](/imgs/blog/shenyu-dubbo/register-client.png)
+![img](/imgs/blog/shenyu-dubbo/register-client.png)
 
 Declare the registry client type, such as `Http` or `Zookeeper`, in your microservice configuration.
 Load and initialize the corresponding registry client using the `SPI` method when the application starts, and get the service interface information that needs to be registered in it by implementing the post-processor interface related to the `Spring Bean`, and put the obtained information into the `Disruptor`.
@@ -219,7 +219,7 @@ The registry client reads the data from `Disruptor` and registers the interface 
 
 #### 3.1.2 Server-side Registration
 
-![](/imgs/blog/shenyu-dubbo/register-server.png)
+![img](/imgs/blog/shenyu-dubbo/register-server.png)
 
 Declare the registry server type, such as `Http` or `Zookeeper`, in the `shenyu-admin` configuration. When `shenyu-admin` starts, it will read the configuration type, load and initialize the corresponding registry server, and when the registry server receives the interface information registered by `shenyu-client`, it will put it into `Disruptor`, and then it will trigger the registration processing logic to update the service interface information and publish the synchronization event.
 
@@ -229,7 +229,7 @@ The `Disruptor` plays a role in decoupling data and operation, which is good for
 
 Data synchronization refers to the policy used to synchronize data to the `Apache ShenYu` gateway after the `shenyu-admin` backend has manipulated the data. The `Apache ShenYu` gateway currently supports `ZooKeeper`, `WebSocket`, `Http long polling`, `Nacos`, `Etcd` and `Consul` for data synchronization. The default is to synchronize data via `WebSocket`.
 
-Please refer to [Data Synchronization Configuration](https://shenyu.apache.org/docs/user-guide/use-data-sync) for the configuration of data synchronization.
+Please refer to `[Data Synchronization Configuration](https://shenyu.apache.org/docs/user-guide/use-data-sync)` for the configuration of data synchronization.
 
 #### 3.2.1 The Significance of Data Synchronization
 
@@ -247,7 +247,7 @@ The current data synchronization characteristics are as follows.
 
 The following diagram shows the flow of `Apache ShenYu` data synchronization. The `Apache ShenYu` gateway synchronizes configuration data from the configuration service when it starts, and supports push-pull mode to get configuration change information and then update the local cache. Administrators can change user permissions, rules, plugins, traffic configuration in the administration backend (`shenyu-admin`) and synchronize the changes to the `Apache ShenYu` gateway via push-pull mode, depending on which synchronization method is used.
 
-![](/imgs/blog/shenyu-dubbo/data-sync.png)
+![img](/imgs/blog/shenyu-dubbo/data-sync.png)
 
 In the original version, the configuration service relied on the `Zookeeper` implementation, and the management backend `pushed` the changes to the gateway. Now we can support `WebSocket`, `Http long polling`, `Zookeeper`, `Nacos`, `Etcd` and `Consul`, by setting `shenyu.sync.${strategy}` in the configuration file to specify the corresponding synchronization strategy, the default is to use `webosocket` synchronization strategy to achieve second-level data synchronization. However, one thing to note is that the `Apache ShenYu` gateway and `shenyu-admin` must use the same synchronization strategy.
 
@@ -269,13 +269,13 @@ Use the annotation `@ShenyuDubboClient` to mark `dubbo` services that need to be
 
 Annotation scanning is done via the `ApacheDubboServiceBeanListener`, which implements the `ApplicationListener<ContextRefreshedEvent>` interface and starts executing the event handler method when a context refresh event occurs during the `Spring` container startup `onApplicationEvent()`. In the rewritten method logic, the `Dubbo` service `ServiceBean` is read, the metadata object and the `URI` object are constructed and registered with `shenyu-admin`.
 
-The specific registration logic is implemented by the registry, please refer to [Client Access Principles](https://shenyu.apache.org/docs/design/register-center-design/) .
+The specific registration logic is implemented by the registry, please refer to `[Client Access Principles](https://shenyu.apache.org/docs/design/register-center-design/)` .
 
 - Processing registration information
 
 The metadata and `URI` data registered by the client through the registration center are processed at the `shenyu-admin` end, which is responsible for storing to the database and synchronizing to the `shenyu` gateway. The client-side registration processing logic of the `Dubbo` plugin is in the `ShenyuClientRegisterDubboServiceImpl`. The inheritance relationship is as follows.
 
-![](/imgs/blog/shenyu-dubbo/ShenyuClientRegisterDubboServiceImpl.png)
+![img](/imgs/blog/shenyu-dubbo/ShenyuClientRegisterDubboServiceImpl.png)
 
 - ShenyuClientRegisterService: client registration service, top-level interface.
 - FallbackShenyuClientRegisterService: registration failure, provides retry operation.
@@ -286,7 +286,7 @@ Registration information including selectors, rules and metadata.
 
 The overall `dubbo` service registration process is as follows.
 
-![](/imgs/blog/shenyu-dubbo/dubbo-register-en.png)
+![img](/imgs/blog/shenyu-dubbo/dubbo-register-en.png)
 
 #### 3.3.2 Data Synchronization Process
 
@@ -314,13 +314,13 @@ Saves data to the gateway's memory, `BaseDataCache` is the class that ultimately
 
 The above logic is represented in a flowchart as follows.
 
-![](/imgs/blog/shenyu-dubbo/data-sync-seq-en.png)
+![img](/imgs/blog/shenyu-dubbo/data-sync-seq-en.png)
 
 #### 3.3.3 Service Invocation Process
 
 In the `Dubbo` plugin system, the class extends relationship is as follows.
 
-![](/imgs/blog/shenyu-dubbo/ApacheDubboPlugin.png)
+![img](/imgs/blog/shenyu-dubbo/ApacheDubboPlugin.png)
 
 > ShenyuPlugin: top-level interface, defining interface methods.
 >
@@ -367,7 +367,7 @@ The `ReferenceConfig` object is the key object that supports generalization call
 
 The last one to be executed is `ResponsePlugin`, which unifies the response result messages of the gateway. The processing type is determined by the `MessageWriter`, and the class extends relationship is as follows.
 
-![](/imgs/blog/shenyu-dubbo/MessageWriter.png)
+![img](/imgs/blog/shenyu-dubbo/MessageWriter.png)
 
 > MessageWriter: interface that defines message processing methods.
 >
@@ -386,7 +386,7 @@ Process the response results in the `writeWith()` method, get the results or han
 At this point in the analysis, the source code analysis of the `Dubbo` plugin is complete, and the analysis flowchart is as follows.
 
 
-![](/imgs/blog/shenyu-dubbo/dubbo-execute-en.png)
+![img](/imgs/blog/shenyu-dubbo/dubbo-execute-en.png)
 
 
 ## 4. Summary

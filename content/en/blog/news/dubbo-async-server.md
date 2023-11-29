@@ -7,7 +7,7 @@ description: >
 ---
 
 ## Preface
-It is suggested to make an understanding of the thread phase involved in the process of Dubbo first, please refer to [Implementation background and practice of Dubbo client asynchronous interface](http://dubbo.apache.org/en-us/blog/dubboAsync_client.html) for details.
+It is suggested to make an understanding of the thread phase involved in the process of Dubbo first, please refer to [Implementation background and practice of Dubbo client asynchronous interface](/en/blog/2019/02/20/implementation-background-and-practice-of-dubbo-client-asynchronous-interface/) for details.
 
 ## Implementation background
 It is necessary to introduce the server-side thread strategy in more detail to deepen the user's judgment basis for selecting server-side asynchrony. It is also necessary to introduce coroutines, the "secret weapon" often used in server-side asynchrony.
@@ -63,7 +63,7 @@ __In the default Dubbo thread strategy, there are worker thread pools to execute
 
 ## The sample
 
-Use an example to experience the Dubbo server-side asynchronous interface. For Demo code, visit [https://github.com/dubbo/dubbo-samples/tree/master/dubbo-samples-notify](https://github.com/dubbo/dubbo-samples/tree/master/dubbo-samples-notify)。
+Use an example to experience the Dubbo server-side asynchronous interface. For Demo code, visit [https://github.com/dubbo/dubbo-samples/tree/master/dubbo-samples-notify](https://github.com/dubbo/dubbo-samples/tree/master/2-advanced/dubbo-samples-notify)。
 
 ```java
 public class AsyncServiceImpl implements AsyncService {

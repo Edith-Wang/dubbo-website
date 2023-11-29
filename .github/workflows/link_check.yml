@@ -1,0 +1,56 @@
+name: Link Check
+
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  link_check_job:
+    runs-on: ubuntu-latest
+    name: Link Check Job
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16'
+      - name: Setup Docsy
+        run: git submodule update --init --recursive && sudo npm install -D --save autoprefixer && sudo npm install -D --save postcss-cli
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+      - name: Build
+        env:
+          HUGO_ENV: production
+        run: hugo mod clean && hugo --minify --baseURL /
+      - name: Cache Html Test Ref
+        uses: ./.github/actions/always-upload-cache
+        with:
+          path: tmp/.htmltest/refcache.json
+          key: ${{ runner.os }}-htmltest-ref-${{ github.run_number }}-${{ github.run_id }}-
+          restore-keys: |
+            ${{ runner.os }}-htmltest-ref-
+      - name: Lint Self
+        run: docker run -v $(pwd):/test --rm wjdp/htmltest -s -c /test/.htmltest.yml
+      - name: Lint External
+        run: docker run -v $(pwd):/test --rm wjdp/htmltest -c /test/.htmltest.yml
+      - name: Print lint failed list if failure
+        if: failure()
+        run: cat tmp/.htmltest/htmltest.log | grep -v "hitting ---"
+      - name: Pack lint result if failure
+        if: failure()
+        run: 7z a ${{ github.workspace }}/htmltest.zip tmp/.htmltest/* -r
+      - name: Upload lint result failure
+        if: failure()
+        uses: actions/upload-artifact@v2
+        with:
+          name: "htmltest.zip"
+          path: htmltest.zip

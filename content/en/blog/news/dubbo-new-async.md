@@ -11,7 +11,7 @@ Implementing the full asynchronous programming based on Dubbo, which is a new fe
 
 ## Asynchronous mode before version 2.6.x
 
-Dubbo Provides some asynchronous programming capabilities in 2.6.x and earlier versions, including [Asynchronous Call](http://dubbo.apache.org/zh-cn/docs/user/demos/async-call.html), [Parameter Callback](http://dubbo.apache.org/zh-cn/docs/user/demos/callback-parameter.html) and [Event Notification](http://dubbo.apache.org/zh-cn/docs/user/demos/events-notify.html) on Consumer side. There are some brief introductions to the usage and Demo in the above document links.
+Dubbo Provides some asynchronous programming capabilities in 2.6.x and earlier versions, including [Asynchronous Call](/en/docs/v2.7/user/examples/async-call/), [Parameter Callback](/en/docs/v2.7/user/examples/callback-parameter/) and [Event Notification](/en/docs/v2.7/user/examples/events-notify/) on Consumer side. There are some brief introductions to the usage and Demo in the above document links.
 
 But the current asynchronous method has the following problems:
 
@@ -140,7 +140,7 @@ Next, let's illustrate how to implement a fully asynchronous Dubbo service call 
 
 ## example 1：CompletableFuture interface
 
-CompletableFuture interface can be used both for a synchronous call and for an asynchronous call on Consumer or Provider side. This example implements asynchronous calls between Consumer and Provider sides. Code link [dubbo-samples-async-original-future](https://github.com/apache/dubbo-samples/tree/master/dubbo-samples-async/dubbo-samples-async-original-future
+CompletableFuture interface can be used both for a synchronous call and for an asynchronous call on Consumer or Provider side. This example implements asynchronous calls between Consumer and Provider sides. Code link [dubbo-samples-async-original-future](https://github.com/apache/dubbo-samples/tree/master/2-advanced/dubbo-samples-async/dubbo-samples-async-original-future
 ).
 
 1. Interface definition
@@ -228,7 +228,7 @@ CompletableFuture interface can be used both for a synchronous call and for an a
    
 ## Example 2：Synchronous interface uses Annotation Processor
 
-This example demonstrates how to implement the Consumer-side asynchronous service call using the Annotation Processor based on the original synchronous interface. Code link [dubbo-samples-async-generated-future](https://github.com/apache/dubbo-samples/tree/master/dubbo-samples-async/dubbo-samples-async-generated-future).
+This example demonstrates how to implement the Consumer-side asynchronous service call using the Annotation Processor based on the original synchronous interface. Code link [dubbo-samples-async-generated-future](https://github.com/apache/dubbo-samples/tree/master/2-advanced/dubbo-samples-async/dubbo-samples-async-generated-future).
 
 1. Interface definition
 
@@ -357,7 +357,7 @@ This example demonstrates how to implement the Consumer-side asynchronous servic
 
 ## Example 3：Use AsyncContext
 
-This example demonstrates how to implement the Provider-side asynchronous execution through AsyncContext based on the original synchronous interface. Code link [dubbo-samples-async-provider](https://github.com/apache/dubbo-samples/tree/master/dubbo-samples-async/dubbo-samples-async-provider).
+This example demonstrates how to implement the Provider-side asynchronous execution through AsyncContext based on the original synchronous interface. Code link [dubbo-samples-async-provider](https://github.com/apache/dubbo-samples/tree/master/2-advanced/dubbo-samples-async/dubbo-samples-async-provider).
 
 1. Interface definition
 
